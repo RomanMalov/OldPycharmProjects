@@ -12,7 +12,7 @@ for x in range(10):
         z = 10*sin(0.5*x)*sin(0.5*y)
         i.append(30*x)
         j.append(30*y)
-        k.append(5*z)
+        k.append(30*z)
 cvordinates = [i,j,k]
 connections=[]
 edges = []
