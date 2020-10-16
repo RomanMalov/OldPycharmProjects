@@ -31,7 +31,7 @@ class particle:
         return sqrt((self.x - other.x) ** 2 + (self.y - other.y) ** 2)
 
     def reinit(self):
-        canvas.coords(self.obj, self.x - 5, self.y - 5, self.x + 5, self.y + 5)
+        canvas.coords(self.obj, self.x - 20, self.y - 20, self.x + 20, self.y + 20)
         self.color = '#'+('000'+str(hex(int(abs(self.a if (-255<self.a<255) else 255))))[2:])[-2:]+('000'+str(hex(int(abs(self.vx if (-255<self.vx<255) else 255))))[2:])[-2:]+('000'+str(hex(int(abs(self.vy if (-255<self.vy<255) else 255))))[2:])[-2:]
         canvas.itemconfig(self.obj, fill = self.color)
         #canvas.coords(self.vectorv, self.x, self.y, self.x + self.vx, self.y + 1 * self.vy)

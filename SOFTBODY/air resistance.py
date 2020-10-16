@@ -1,25 +1,25 @@
 from tkinter import *
 from math import *
 import random
-stiffness = 100
+stiffness = 10
 l0 = 100
 gr=[]
 dt=0.01
 g=0
 l1=105
-resistance=1
+resistance=0.0
 class particle:
     def __init__(self, x, y):
         self.x = x
         self.y = y
-        self.vx = 0
-        self.vy = 0
+        self.vx = random.randint(-100, 100)
+        self.vy = random.randint(-100, 100)
         self.ax = 0
         self.ay = 0
         self.m = 1
         self.obj = canvas.create_oval(x - 5, y - 5, x + 5, y + 5, fill='yellow')
-        self.vectorv = canvas.create_line(x, y, x + self.vx, y + self.vy, fill='blue')
-        self.vectora = canvas.create_line(x, y, x + self.ax, y + self.ay, fill='red')
+        #self.vectorv = canvas.create_line(x, y, x + self.vx, y + self.vy, fill='blue')
+        #self.vectora = canvas.create_line(x, y, x + self.ax, y + self.ay, fill='red')
         self.potential_energy = 0
         self.kinetic_energy = 0
         self.time_graphic = []
@@ -47,7 +47,7 @@ class particle:
                 if l<l1:
                     force = (l-l0)*stiffness
                 else:
-                    force = stiffness*l1*(l1-l0)/l
+                    force = stiffness*l1**2*(l1-l0)/l**2
                 acceleration = force/self.m
                 self.ax += acceleration * cos(angle)
                 self.ay += acceleration * sin(angle)
@@ -67,7 +67,7 @@ class particle:
         self.time_graphic1.append(self.kinetic_energy)
         self.time_graphic2.append(self.potential_energy/2+self.kinetic_energy)
 
-        return self.potential_energy/2+self.kinetic_energy
+        return self.kinetic_energy
 
 
 def game():
@@ -154,7 +154,7 @@ print(particles[1].time_graphic)
 print(particles[1].time_graphic1)
 print(particles[1].time_graphic2)
 print(gr)
-'''if len(gr)>=2:
+if len(gr)>=2:
 
     graphic1 = gr
 else:
@@ -186,4 +186,4 @@ for ax in fig.axes:
     ax.grid(True)
 
 
-plt.show()'''
+plt.show()

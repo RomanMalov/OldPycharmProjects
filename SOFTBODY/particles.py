@@ -141,7 +141,7 @@ canvas.pack()
 #master.bind('<KeyPress>', next)
 
 master.mainloop()
-'''
+
 print(particles[1].time_graphic)
 print(particles[1].time_graphic1)
 print(particles[1].time_graphic2)
@@ -178,4 +178,4 @@ for ax in fig.axes:
     ax.grid(True)
 
 
-plt.show()'''
+plt.show()
