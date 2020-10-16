@@ -3,7 +3,7 @@ from math import *
 from angem import Matrix1, Vector
 camera_width = 600
 camera_height = 600
-focal_length = 100
+focal_length = 70
 s_graphic = []
 
 
@@ -33,10 +33,10 @@ def get_coordinate(cam, n, point):
 
 
 points = []
-for x in range(10):
-    for y in range(10):
-        z = 10 * sin(0.5 * x) * sin(0.5 * y)
-        points.append(Vector(30 * x, 30 * y, 20 * z))
+for x in range(5):
+    for y in range(5):
+        for z in range(5):
+            points.append(Vector(x, y, z)*80-Vector(150, 150, 150))
 i1 = [0, 100, 0, 0, 100, 100, 0, 100]
 j1 = [0, 0, 100, 0, 100, 0, 100, 100]
 k1 = [0, 0, 0, 100, 0, 100, 100, 100]
