@@ -19,7 +19,6 @@ master1.bind('<Button-1>', game1)
 canvas1.pack()
 master1.mainloop()
 #coords_of_line=[[100, 400], [300, 600],[700, 200], [900, 400]]
-coords_of_line
 if bool(coords_of_line):
 
     ugols = []
