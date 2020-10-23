@@ -2,10 +2,13 @@ from math import *
 
 import random
 def plane_angle_and_length(a, b):
-    x = b[0] - a[0]
-    y = b[1] - a[1]
-    l = sqrt(x ** 2 + y ** 2)
-    return [(asin(y / l) if x >= 0 else (pi - asin(y / l))), l]
+    if a!=b:
+        x = b[0] - a[0]
+        y = b[1] - a[1]
+        l = sqrt(x ** 2 + y ** 2)
+        return [(asin(y / l) if x >= 0 else (pi - asin(y / l))), l]
+    else:
+        return 0, 0
 
 
 def iter(coord1, coord2, angle_and_length_list, full_length):
@@ -31,15 +34,14 @@ def fractal_wall(time, length, vertex_number, iter_number, omega, variation1, va
     :param omega: cycle frequency
     :param variation1: random number from 0 to 1
     :param variation2: random number from 0 to 1
-    :return: coordsd|dddddddddddacghCZGH
+    :return: coords of all points in fractal
     '''
-    time = time % int(2*pi/omega)
     initial_list = [[0, 0]]
 
     l0 = length / (vertex_number + 1)
     for i in range(vertex_number):
-        x = (l0 ) * cos(omega * time + i * 2 * pi / vertex_number*variation1) + l0 * (i + 1)
-        y = (l0 ) * sin(omega * time + i * 2 * pi / vertex_number*variation2)
+        x = (l0 ) * cos(omega * time*(variation1*cos(i*2)) + i * 2 * pi / vertex_number) + l0 * (i + 1)
+        y = (l0 ) * sin(omega * time*(variation2*sin(i)) + i * 2 * pi / vertex_number)
         initial_list.append([x, y])
     initial_list.append([length, 0])
     initial_angle_and_length_list = []
@@ -68,7 +70,7 @@ if __name__ == '__main__':
     vertex = 3
     time = 0
     list_of_lines = []
-    lines_coords = fractal_wall(time, 300, 3, 3, 0.1, v1, v2)
+    lines_coords = fractal_wall(time, 300, 4, 4, 0.1, v1, v2)
     for i in range(len(lines_coords) - 1):
         list_of_lines.append(canvas.create_line([lines_coords[i][0] + 100, lines_coords[i][1] + 300],
                                                 [lines_coords[i + 1][0] + 100, lines_coords[i + 1][1] + 300]))
@@ -76,12 +78,13 @@ if __name__ == '__main__':
     def game():
         global time
         time += 1
-        lines_coords = fractal_wall(time, 300, 3, 3, 0.1, v1, v2)
+        lines_coords = fractal_wall(time, 300, 4, 4, 0.1, v1, v2)
         print(lines_coords)
         for i in range(len(lines_coords) - 1):
          canvas.coords(list_of_lines[i],[lines_coords[i][0]+100, lines_coords[i][1] + 300,
                                                     lines_coords[i + 1][0]+100, lines_coords[i + 1][1] + 300])
-        master.after(1, game)
+        canvas.update()
+        game()
 
 
     canvas.pack()
