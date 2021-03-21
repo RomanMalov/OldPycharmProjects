@@ -5,6 +5,7 @@ sigma = 1
 epsilon = 1
 dt = 0.001
 all_coords = []
+all_speeds = []
 TIME  = 10000
 L = 10
 class System:
@@ -102,11 +103,14 @@ def iteration(k):
     all_coords.append(
         coords + [[0, 0, 0], [0, 0, 10], [0, 10, 0], [10, 0, 0], [10, 10, 0], [10, 0, 10], [0, 10, 10], [10, 10, 10]])'''
     list_coords = []
+    list_speeds = []
     print(k)
     for i in system.coords:
         list_coords.append(list((i + np.array([5, 5, 5])) % 10 - np.array([5, 5, 5])))
-    all_coords.append(
-        list_coords)
+    for j in system.speeds:
+        list_speeds.append(list(j))
+    all_coords.append(list_coords)
+    all_speeds.append(list_speeds)
 
 # + [[-5, -5, -5], [-5, -5, 5], [-5, 5, -5], [5, -5, -5], [-5, 5, 5], [5, -5, 5], [-5, 5, 5],
 # [5, 5, 5]]
@@ -155,3 +159,8 @@ with open('coordinates', 'w') as file_coords:
         for j in i:
             print(*j, sep = ';', end = ' ',file = file_coords)
         print('', file = file_coords)
+with open('velocityes', 'w') as file_speeds:
+    for i in all_speeds:
+        for j in i:
+            print(*j, sep = ';', end = ' ',file = file_speeds)
+        print('', file = file_speeds)
