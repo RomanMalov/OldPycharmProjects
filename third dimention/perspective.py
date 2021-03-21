@@ -39,9 +39,9 @@ for t in range(200):
 
             #for z in range(5):
             #points.append(Vector(x, y, z)*80-Vector(150, 150, 150))
-        z = t/5
-        x = 10*sin(0.1*t)
-        y = 10*cos(0.1*t)
+        z = 0
+        x = t//10
+        y = t%10
         points.append(Vector(x, y, z)*30-Vector(100, 100, 100))
 i1 = [0, 100, 0, 0, 100, 100, 0, 100]
 j1 = [0, 0, 100, 0, 100, 0, 100, 100]
@@ -82,6 +82,7 @@ def game(event):
             canvas.itemconfig(point_draw[i], fill = 'white', outline = 'white')
 def meme(event):
     global camera
+    game(event)
     camera+=direction*0.5
 
 

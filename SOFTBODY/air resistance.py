@@ -97,6 +97,8 @@ def game():
         full_energy += i.energy()
         label.config(text = str(full_energy))
     gr.append(full_energy)
+    center_x = 0
+    center_y = 0
     for i in range(len(particles)):
         p = particles[i]
         p.x = newcoords[i][0]
@@ -120,7 +122,7 @@ particles = []
 master = Tk()
 canvas = Canvas(master, height=w, width=h, bg='white')
 canvas.create_rectangle(0,0,w-100,h-100)
-
+center = canvas.create_oval(0,0,0,0, fill = 'blue')
 def meme(event):
     particles.append(particle(event.x, event.y))
 def meme1(event):

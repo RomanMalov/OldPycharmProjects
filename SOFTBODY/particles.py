@@ -1,7 +1,7 @@
 from tkinter import *
 from math import *
 import random
-stiffness = 1
+stiffness = 0.1
 l0 = 100
 gr=[]
 dt=0.01
@@ -65,8 +65,9 @@ def game():
     newcoords = []
     full_energy = 0
     for i in particles:
-        vx = i.vx + i.acceleration()[0]*dt
-        vy = i.vy + i.acceleration()[1]*dt
+        a=i.acceleration()
+        vx = i.vx + a[0]*dt
+        vy = i.vy + a[1]*dt
         x = i.x + i.vx*dt
         y = i.y + i.vy*dt
         if i.x < 0:
@@ -86,13 +87,18 @@ def game():
         full_energy += i.energy()
         label.config(text = str(full_energy))
     gr.append(full_energy)
+    center_x = 0
+    center_y = 0
     for i in range(len(particles)):
         p = particles[i]
         p.x = newcoords[i][0]
+        center_x+=p.x
         p.y = newcoords[i][1]
+        center_y+=p.y
         p.vx = newvelosity[i][0]
         p.vy = newvelosity[i][1]
-
+    if len(particles)>0:
+        canvas.coords(center, center_x/len(particles), center_y/len(particles), center_x/len(particles), center_y/len(particles),)
 
 def next():
     game()
@@ -110,6 +116,8 @@ master = Tk()
 canvas = Canvas(master, height=w, width=h, bg='white')
 now_coords = [0,0]
 button_pressed=False
+center = canvas.create_oval(0,0,0,0, fill = 'blue')
+
 line  = canvas.create_line(0,0,0,0)
 def meme(event):
     global now_coords

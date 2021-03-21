@@ -1,0 +1,19 @@
+import random
+class Creature:
+    def __init__(self):
+        self.x = random.randint(0, 800)
+        self.y = random.randint(0, 800)
+        self.energy = 100
+        self.memory = random.radint(1,8)
+        self.code = []
+        commands = []
+        for i in range(10):
+            pass
+
+    def movxe(self):
+        pass
+    def eat(self):
+        pass
+    def goto(self, n):
+        pass
+

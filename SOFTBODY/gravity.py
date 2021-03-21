@@ -5,6 +5,7 @@ stiffness = 1
 l0 = 100
 gr=[]
 dt=0.01
+G=1
 class particle:
     def __init__(self, x, y):
         self.x = x
@@ -45,7 +46,7 @@ class particle:
                 acceleration = force/self.m
                 self.ax += acceleration * cos(angle)
                 self.ay += acceleration * sin(angle)
-            self.ay+=200
+            self.ay+=G
         return self.ax, self.ay
     def energy(self):
         self.potential_energy=0
